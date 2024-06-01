@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: 0;
+}
+
+// Importar as funções do Bootstrap
+@import "bootstrap/scss/functions";
+
+// Definir variáveis personalizadas antes de importar o Bootstrap
+$primary: #061d10;
+$segundary: #a8d3e8;
+
+// Substituir as variáveis padrão do Bootstrap com as suas cores personalizadas
+$theme-colors: (
+    "cor1": $primary,
+    "cor2": $segundary,
+);
+
+// Importar o Bootstrap
+@import "bootstrap/scss/bootstrap";

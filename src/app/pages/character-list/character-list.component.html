@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row row-cols-md-4 gy-5">
+        <ng-container *ngFor="let card of data">
+            <div class=" d-flex justify-content-center">
+                <app-card [card]="card"></app-card>
+            </div>
+        </ng-container>
+    </div>
+</div>

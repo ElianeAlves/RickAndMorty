@@ -1,0 +1,16 @@
+<div class="card">
+  <img [src]="card.image" class="card-img-top" alt="Img {{card.image}}" width="300" height="300">
+  <div class="card-body">
+    <h5 class="card-title">{{card.name}}</h5>
+    <p class="card-text">
+      <span class="badge text-bg-secondary"></span>Espécie: <span
+        [innerHTML]="card.species == 'Human' ? 'Humano': 'Alien'"></span>
+    </p>
+    <p class="card-text"><span class="badge text-bg-secondary">
+
+      </span>Status: <span [innerHTML]="card.status == 'Alive' ? 'Vivo': 'Morto'"></span></p>
+    <p class="card-text"><span class="badge text-bg-secondary"></span>Gênero: <span
+        [innerHTML]="card.gender == 'Male' ? 'Homem': 'Mulher'"></span></p>
+    <a [routerLink]="['/character-details', card.id]" class="btn btn-primary">Ver</a>
+  </div>
+</div>
