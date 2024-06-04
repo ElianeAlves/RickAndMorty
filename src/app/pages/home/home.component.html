@@ -5,6 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Quantidade de personagens</h5>
+                    <p>{{infoCharacters.count}}</p>
                 </div>
             </div>
         </div>
@@ -13,6 +14,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Quantidade de episódios</h5>
+                    <p>{{infoEpisodes.count}}</p>
+
                 </div>
             </div>
         </div>
@@ -44,19 +47,42 @@
 <p>adicionar seções de quantidade de quantidade com contator</p>
 paginação
 
-<div>
-    <h2 class="text-center">Personagens</h2>
+<div class="py-3" style="background-color: #272b33;">
+    <h2 class="text-center fs-2 font-class text-cor3 py-3">Personagens</h2>
     <div class="container">
-        <div class="row row-cols-md-4 gy-5">
-            <ng-container *ngFor="let card of data.slice(0,4)">
-                <div class=" d-flex justify-content-center">
-                    <app-card [card]="card"></app-card>
-                </div>
+        <div class="row row-cols-md-3 gy-5">
+            <ng-container *ngIf="characters">
+                <ng-container *ngFor="let item of characters.slice(0,3)">
+                    <div class=" d-flex justify-content-center">
+                        <app-card [routerLink]="['/character-details', item.id]" [item]="item"></app-card>
+                    </div>
+                </ng-container>
             </ng-container>
         </div>
-        <div class="d-flex justify-content-center">
-            <button routerLink="/character-list">Ver mais</button>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-dark text-cor3 font-class" routerLink="/character-list">Ver
+                mais</button>
+
         </div>
     </div>
 </div>
-  
+
+<div class="background py-3">
+    <h2 class="text-center fs-2 font-class text-cor3 py-3">Episódios</h2>
+    <div class="container-fluid">
+        <div class="row row-cols-md-4 gy-5">
+            <ng-container *ngIf="episodes">
+                <ng-container *ngFor="let item of episodes.slice(0,4)">
+                    <div class="">
+                        <app-card-episode [item]="item"></app-card-episode>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-dark text-cor3 font-class" routerLink="/character-list">Ver
+                mais</button>
+
+        </div>
+    </div>
+</div>

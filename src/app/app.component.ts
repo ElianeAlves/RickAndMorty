@@ -1,10 +1,13 @@
 import { DataService } from './services/data.service';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import localePtBr from '@angular/common/locales/pt';
+
+registerLocaleData(localePtBr)
 
 @Component({
     selector: 'app-root',

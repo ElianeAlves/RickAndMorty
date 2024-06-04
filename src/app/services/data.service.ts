@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { enviroments } from '../../environments/environments';
+import { Results } from '../models/results';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,15 @@ export class DataService {
   }
 
   getCharacterById(id: number): Observable<any> {
-    return this.http.get(`${enviroments.apiUrl}/character/${id}`,)
+    return this.http.get(`${enviroments.apiUrl}/character/${id}`)
 
+  }
+
+  getNextPage(url: string): Observable<Results> {
+    return this.http.get<Results>(url);
+  }
+
+  getPreviousPage(url: string): Observable<Results> {
+    return this.http.get<Results>(url);
   }
 }

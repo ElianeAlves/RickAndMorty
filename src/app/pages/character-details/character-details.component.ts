@@ -1,6 +1,7 @@
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Results } from '../../models/results';
 
 @Component({
   selector: 'app-character-details',
@@ -8,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './character-details.component.scss'
 })
 export class CharacterDetailsComponent implements OnInit {
+  character!: Results;
 
   constructor(private route: ActivatedRoute,
     private dataService: DataService
@@ -20,6 +22,7 @@ export class CharacterDetailsComponent implements OnInit {
 
       this.dataService.getCharacterById(params.id).subscribe((res: any) => {
         console.log(res)
+        this.character = res
       })
     })
 

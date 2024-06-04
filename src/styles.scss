@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     list-style: 0;
-    text-decoration: none;
     box-sizing: border-box;
     border: 0;
 }
@@ -13,12 +12,29 @@
 // Definir variáveis personalizadas antes de importar o Bootstrap
 $primary: #061d10;
 $segundary: #a8d3e8;
+$tertiary: #a7d328;
 
 // Substituir as variáveis padrão do Bootstrap com as suas cores personalizadas
 $theme-colors: (
     "cor1": $primary,
     "cor2": $segundary,
+    "cor3": $tertiary,
 );
 
 // Importar o Bootstrap
 @import "bootstrap/scss/bootstrap";
+
+@font-face {
+    font-family: 'rickandmorty';
+    src: url('assets/fonts/rickandmorty.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-class {
+    font-family: 'rickandmorty', sans-serif;
+}
+
+p {
+    margin: 0 !important;
+}

@@ -12,5 +12,5 @@ import { RouterModule } from '@angular/router';
 })
 
 export class CardComponent {
-  @Input() card!: Results
+  @Input() item!: Results
 }

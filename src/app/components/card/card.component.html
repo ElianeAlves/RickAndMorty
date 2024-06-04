@@ -1,16 +1,16 @@
-<div class="card">
-  <img [src]="card.image" class="card-img-top" alt="Img {{card.image}}" width="300" height="300">
+<div class="card rounded hover" style="background-color: #3c3e44;">
+  <img [src]="item.image" class="card-img-top" alt="Img {{item.image}}" width="300" height="300">
   <div class="card-body">
-    <h5 class="card-title">{{card.name}}</h5>
-    <p class="card-text">
-      <span class="badge text-bg-secondary"></span>Espécie: <span
-        [innerHTML]="card.species == 'Human' ? 'Humano': 'Alien'"></span>
-    </p>
-    <p class="card-text"><span class="badge text-bg-secondary">
+    <h5 class="text-cor2 fw-bold fs-4">{{item.name}}</h5>
+    <div class="d-flex align-items-center gap-2">
+      <div [ngClass]="item.status == 'Alive' ? 'green': 'red'"></div>
+      <p class="text-white fw-medium">
+        {{ item.status == 'Alive' ? 'Vivo' : 'Morto' }} - {{ item.species == 'Human' ? 'Humano' : 'Alien' }} -
+        {{item.gender == 'Male' ? 'Homem': 'Mulher'}}
+      </p>
 
-      </span>Status: <span [innerHTML]="card.status == 'Alive' ? 'Vivo': 'Morto'"></span></p>
-    <p class="card-text"><span class="badge text-bg-secondary"></span>Gênero: <span
-        [innerHTML]="card.gender == 'Male' ? 'Homem': 'Mulher'"></span></p>
-    <a [routerLink]="['/character-details', card.id]" class="btn btn-primary">Ver</a>
+    </div>
+    <p class="text-secondary fw-bold mt-2">Localização:</p>
+    <p class="text-white fw-medium">{{item.location.name}}</p>
   </div>
 </div>
