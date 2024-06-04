@@ -1,7 +1,7 @@
+import { Results } from './../../models/results';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Results } from '../../models/results';
 
 @Component({
   selector: 'app-character-details',
@@ -10,6 +10,8 @@ import { Results } from '../../models/results';
 })
 export class CharacterDetailsComponent implements OnInit {
   character!: Results;
+  otherCharacters!: Results[];
+  id: any;
 
   constructor(private route: ActivatedRoute,
     private dataService: DataService
@@ -18,12 +20,17 @@ export class CharacterDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
-      console.log(params.id)
+      this.id = params.id
 
-      this.dataService.getCharacterById(params.id).subscribe((res: any) => {
+      this.dataService.getCharacterById(this.id).subscribe((res: any) => {
         console.log(res)
         this.character = res
       })
+    })
+
+    this.dataService.getCharacters().subscribe((res: any) => {
+      console.log(res)
+      this.otherCharacters = res.results.filter((item: Results) => item.id != this.id)
     })
 
     

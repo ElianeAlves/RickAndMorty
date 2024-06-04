@@ -8,6 +8,7 @@ import { DataService } from './../../services/data.service';
   styleUrls: ['./character-list.component.scss']
 })
 export class CharacterListComponent implements OnInit {
+
   data: Results[] = [];
   info: any = {
     next: '',
@@ -26,6 +27,18 @@ export class CharacterListComponent implements OnInit {
       this.info = res.info;
       this.data = res.results;
     });
+  }
+
+  teste(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+    console.log('Valor do input:', inputValue);
+    // Você pode armazenar o valor em uma propriedade ou fazer outras operações
+
+    this.dataService.getCharactersByName(inputValue).subscribe((res: any) => {
+      console.log(res)
+      this.data = res.results
+    })
   }
 
   proxima(): void {

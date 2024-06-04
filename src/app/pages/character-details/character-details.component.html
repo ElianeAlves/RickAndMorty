@@ -1,33 +1,46 @@
-<div class="container py-5 vh-100" style="background-color: #272b33;">
-  <div class="row justify-content-center gap-3">
-    <div class="col-4 p-0">
-      <img [src]="character.image" alt="" class="w-100">
-
+<div class="container-fluid py-5" style="background-color: #272b33;">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-4">
+        <img [src]="character.image" alt="" class="w-100">
+      </div>
+      <div class="col-8">
+        <h5 class="text-cor2 fw-bold fs-4">{{character.name}}</h5>
+        <div class="d-flex align-items-center gap-2">
+          <div [ngClass]="character.status == 'Alive' ? 'green': 'red'"></div>
+          <p class="text-white fw-medium">
+            {{ character.status == 'Alive' ? 'Vivo' : 'Morto' }} - {{ character.species == 'Human' ? 'Humano' : 'Alien' }}
+            -
+            {{character.gender == 'Male' ? 'Homem': 'Mulher'}}
+          </p>
+        </div>
+        <div class="d-flex gap-2 align-items-center mt-2">
+          <p class="text-secondary fw-bold">Data de criação:</p>
+          <p class="text-white fw-medium">{{character.created | date: 'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="d-flex gap-2 align-items-center mt-2">
+          <p class="text-secondary fw-bold">Localização:</p>
+          <p class="text-white fw-medium">{{character.location.name}}</p>
+        </div>
+        <div class="d-flex gap-2 align-items-center mt-2">
+          <p class="text-secondary fw-bold">Aparece em:</p>
+          <p class="text-white fw-medium">{{character.episode.length}} episódios</p>
+        </div>
+        <div class="d-flex gap-2 align-items-center mt-2">
+          <p class="text-secondary fw-bold">Origem:</p>
+          <p class="text-white fw-medium">{{character.origin.name}}</p>
+        </div>
+      </div>
     </div>
-    <div class="col-6 p-0">
-      <h5 class="text-cor2 fw-bold fs-4">{{character.name}}</h5>
-      <div class="d-flex align-items-center gap-2">
-        <div [ngClass]="character.status == 'Alive' ? 'green': 'red'"></div>
-        <p class="text-white fw-medium">
-          {{ character.status == 'Alive' ? 'Vivo' : 'Morto' }} - {{ character.species == 'Human' ? 'Humano' : 'Alien' }}
-          -
-          {{character.gender == 'Male' ? 'Homem': 'Mulher'}}
-        </p>
-
-      </div>
-      <div class="d-flex gap-2 align-items-center mt-2">
-        <p class="text-secondary fw-bold">Data de criação:</p>
-        <p class="text-white fw-medium">{{character.created| date: 'dd/MM1/yyyy'}}</p>
-      </div>
-      <p class="text-secondary fw-bold mt-2">Localização:</p>
-      <p class="text-white fw-medium">{{character.location.name}}</p>
-
-      <div class="d-flex gap-2 align-items-center mt-2">
-        <p class="text-secondary fw-bold">Aparece em:</p>
-        <p class="text-white fw-medium">{{character.episode.length}} episódios</p>
-      </div>
-
-
+  </div>
+  <div class="container">
+    <h2 class="text-center fs-2 font-class text-cor3 py-3">Mais Personagens</h2>
+    <div class="row">
+      <ng-container *ngFor="let item of otherCharacters.slice(0,4)">
+        <div class="col">
+          <app-card [item]="item" [routerLink]="['/character-details', item.id]"></app-card>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

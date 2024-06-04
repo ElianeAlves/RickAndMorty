@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import localePtBr from '@angular/common/locales/pt';
-
 registerLocaleData(localePtBr)
 
 @Component({
@@ -19,6 +18,9 @@ registerLocaleData(localePtBr)
 })
 export class AppComponent {
   title = 'rick-and-morty-dashboard';
+  
 
   
+  
+
 }

@@ -18,6 +18,15 @@ export class DataService {
   getCharacters(): Observable<any> {
     return this.http.get(`${enviroments.apiUrl}/character`)
   }
+  getCharactersFilterAlive(): Observable<any> {
+    return this.http.get(`${enviroments.apiUrl}/character?status=alive`)
+  }
+  getCharactersFilterDead(): Observable<any> {
+    return this.http.get(`${enviroments.apiUrl}/character?status=dead`)
+  }
+  getCharactersByName(name: string): Observable<any> {
+    return this.http.get(`${enviroments.apiUrl}/character?name=${name}`)
+  }
 
   getEpisodes(): Observable<any> {
     return this.http.get(`${enviroments.apiUrl}/episode`)
