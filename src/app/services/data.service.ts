@@ -30,17 +30,14 @@ export class DataService {
 
   getEpisodes(): Observable<any> {
     return this.http.get(`${enviroments.apiUrl}/episode`)
-
   }
 
   getLocation(): Observable<any> {
     return this.http.get(`${enviroments.apiUrl}/location`)
-
   }
 
   getCharacterById(id: number): Observable<any> {
     return this.http.get(`${enviroments.apiUrl}/character/${id}`)
-
   }
 
   getNextPage(url: string): Observable<Results> {

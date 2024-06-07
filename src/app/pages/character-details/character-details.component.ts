@@ -11,29 +11,27 @@ import { ActivatedRoute } from '@angular/router';
 export class CharacterDetailsComponent implements OnInit {
   character!: Results;
   otherCharacters!: Results[];
-  id: any;
+  id!: number;
 
   constructor(private route: ActivatedRoute,
     private dataService: DataService
-  ){
-    
+  ) {
+
   }
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.id = params.id
 
       this.dataService.getCharacterById(this.id).subscribe((res: any) => {
-        console.log(res)
         this.character = res
       })
     })
 
     this.dataService.getCharacters().subscribe((res: any) => {
-      console.log(res)
       this.otherCharacters = res.results.filter((item: Results) => item.id != this.id)
     })
 
-    
+
   }
 
 }

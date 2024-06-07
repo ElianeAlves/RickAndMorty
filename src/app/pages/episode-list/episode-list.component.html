@@ -1,0 +1,14 @@
+<div class="background py-3">
+    <h2 class="text-center fs-2 font-class text-cor3 py-3">Episódios</h2>
+    <div class="container">
+        <div class="row row-cols-md-4 gy-5">
+            <ng-container *ngIf="episodes">
+                <ng-container *ngFor="let item of episodes">
+                    <div class="">
+                        <app-card-episode [item]="item"></app-card-episode>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

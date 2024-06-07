@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Results } from '../../models/results';
 import { DataService } from './../../services/data.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-character-list',
@@ -8,7 +9,6 @@ import { DataService } from './../../services/data.service';
   styleUrls: ['./character-list.component.scss']
 })
 export class CharacterListComponent implements OnInit {
-
   data: Results[] = [];
   info: any = {
     next: '',

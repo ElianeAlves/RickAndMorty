@@ -1,28 +1,26 @@
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Results } from './../../models/results';
 import { DataService } from './../../services/data.service';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "../../components/card/card.component";
 import { RouterModule } from '@angular/router';
 import { CardEpisodeComponent } from "../../components/card-episode/card-episode.component";
-import Chart from 'chart.js/auto';
+import { CardLocationComponent } from "../../components/card-location/card-location.component";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  imports: [CommonModule, CardComponent, RouterModule, CardEpisodeComponent]
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    imports: [CommonModule, CardComponent, RouterModule, CardEpisodeComponent, CardLocationComponent]
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   characters!: Results[];
   location: any;
   episodes: any;
   infoCharacters: any;
   infoEpisodes: any;
   infoLocation: any;
-  @ViewChild('myChart') myChart!: ElementRef<HTMLCanvasElement>;
-  chart!: Chart<'doughnut', number[], string>;
   totalAlive: any;
   totalDead: any;
   
@@ -50,7 +48,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.DataService.getEpisodes().subscribe((res: any) => {
       if (res) {
-        console.log(res)
         this.infoEpisodes = res.info
         this.episodes = res.results
       }
@@ -59,36 +56,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.DataService.getLocation().subscribe((res: any) => {
       if (res) {
         this.infoLocation = res.info
-        this.location = res.Results
+        this.location = res.results
+        console.log(this.location)
       }
     })
   }
 
-  ngAfterViewInit(): void {
-    this.createChart();
-  }
-
-  createChart(): void {
-    const context = this.myChart.nativeElement.getContext('2d');
-    if (context) {
-      this.chart = new Chart(context, {
-        type: 'doughnut',
-        data: {
-          labels: ['Vivos', 'Mortos', `Total: ${this.infoCharacters.count}`],
-          datasets: [{
-            data: [this.totalAlive, this.totalDead, 0],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-          }]
-        },
-        options: {
-          responsive: true
-        }
-      });
-    }
-  }
 }
