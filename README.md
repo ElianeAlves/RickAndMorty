@@ -12,13 +12,6 @@ Instalação/Inicialização
 -   **Angular v17**
     -   Instale a versão mais recente do Angular CLI:
 
-
-        bash
-
-
-        Copiar código
-
-
         `npm install -g @angular/cli@latest`
 
 
@@ -34,25 +27,10 @@ Instalação/Inicialização
 
 1.  **Clone o repositório:**
 
-
-    bash
-
-
-    Copiar código
-
-
-    `git clone <repository-url>
-    cd <repository-directory>`
+    `git clone https://github.com/ElianeAlves/RickAndMorty.git`
 
 
 2.  **Instale as dependências:**
-
-
-    bash
-
-
-    Copiar código
-
 
     `npm install`
 
@@ -60,23 +38,10 @@ Instalação/Inicialização
 3.  **Inicie o servidor de desenvolvimento:**
 
 
-    bash
-
-
-    Copiar código
-
-
-    `ng serve`
+    `ng serve -o`
 
 
 4.  **Acesse a aplicação no navegador:**
-
-
-    arduino
-
-
-    Copiar código
-
 
     `http://localhost:4200`
 
