@@ -53,7 +53,7 @@ Funcionalidades
 ### Login
 
 
--   Para acessar a dashboard, use o login fornecido na tela de login.
+-   Para acessar a dashboard, use o login fornecido na tela de login (indicado no placeholder).
 
 
 ### Home Page
@@ -63,6 +63,12 @@ Funcionalidades
     -   **Personagens**
     -   **Episódios**
     -   **Localizações**
+
+### Detalhes
+
+
+-   A listagem de **Personagens** possui rota para detalhes dos personagens e botões de anterior/próximo para paginação
+-   A listagem de **Episódios** e **Localizações** possui botões de anterior/próximo para paginação, sem detalhamento
 
 
 ### Rotas e Autenticação
