@@ -7,12 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import localePtBr from '@angular/common/locales/pt';
+import { CharacterService } from './services/character.service';
+import { EpisodeService } from './services/episode.service';
+import { LocationService } from './services/location.service';
 registerLocaleData(localePtBr)
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  providers: [DataService],
+  providers: [DataService, CharacterService, EpisodeService, LocationService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   imports: [CommonModule, RouterOutlet, HttpClientModule, NavbarComponent, FooterComponent],

@@ -1,5 +1,5 @@
+import { CharacterService } from './../../services/character.service';
 import { Results } from './../../models/results';
-import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class CharacterDetailsComponent implements OnInit {
   id!: number;
 
   constructor(private route: ActivatedRoute,
-    private dataService: DataService
+    private characterService: CharacterService
   ) {
 
   }
@@ -22,16 +22,14 @@ export class CharacterDetailsComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       this.id = params.id
 
-      this.dataService.getCharacterById(this.id).subscribe((res: any) => {
+      this.characterService.getCharacterById(this.id).subscribe((res: any) => {
         this.character = res
       })
     })
 
-    this.dataService.getCharacters().subscribe((res: any) => {
+    this.characterService.getCharacters().subscribe((res: any) => {
       this.otherCharacters = res.results.filter((item: Results) => item.id != this.id)
     })
-
-
   }
 
 }

@@ -1,6 +1,8 @@
+import { LocationService } from './../../services/location.service';
+import { EpisodeService } from './../../services/episode.service';
+import { CharacterService } from './../../services/character.service';
 import { CommonModule } from '@angular/common';
 import { Results } from './../../models/results';
-import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "../../components/card/card.component";
 import { RouterModule } from '@angular/router';
@@ -8,11 +10,11 @@ import { CardEpisodeComponent } from "../../components/card-episode/card-episode
 import { CardLocationComponent } from "../../components/card-location/card-location.component";
 
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss',
-    imports: [CommonModule, CardComponent, RouterModule, CardEpisodeComponent, CardLocationComponent]
+  selector: 'app-home',
+  standalone: true,
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
+  imports: [CommonModule, CardComponent, RouterModule, CardEpisodeComponent, CardLocationComponent],
 })
 export class HomeComponent implements OnInit {
   characters!: Results[];
@@ -21,10 +23,16 @@ export class HomeComponent implements OnInit {
   infoCharacters: any;
   infoEpisodes: any;
   infoLocation: any;
-  totalAlive: any;
-  totalDead: any;
-  
-  constructor(private DataService: DataService) {
+  element!: number;
+  totalCharacters: number = 0;
+  totalEpisodes: number = 0;
+  totalLocation: number = 0;
+
+  constructor(
+    private characterService: CharacterService,
+    private episodeService: EpisodeService,
+    private locationService: LocationService
+  ) {
 
   }
   ngOnInit(): void {
@@ -32,34 +40,44 @@ export class HomeComponent implements OnInit {
   }
 
   getResults() {
-    this.DataService.getCharacters().subscribe((res: any) => {
+    this.characterService.getCharacters().subscribe((res: any) => {
       if (res) {
-        this.infoCharacters = res.info
         this.characters = res.results
+        console.log(this.characters)
+
+        for (let index = 0; index < res.info.count; index++) {
+          const element = index;
+          setTimeout(() => {
+            return this.totalCharacters = element
+          }, 1000);
+        }
       }
     })
 
-    this.DataService.getCharactersFilterAlive().subscribe((res: any) => {
-      this.totalAlive = res.info.count
-    })
-    this.DataService.getCharactersFilterDead().subscribe((res: any) => {
-      this.totalDead = res.info.count
-    })
-
-    this.DataService.getEpisodes().subscribe((res: any) => {
+    this.episodeService.getEpisodes().subscribe((res: any) => {
       if (res) {
-        this.infoEpisodes = res.info
         this.episodes = res.results
+
+        for (let index = 0; index < res.info.count; index++) {
+          const element = index;
+          setTimeout(() => {
+            return this.totalEpisodes = element
+          }, 1000);
+        }
       }
     })
 
-    this.DataService.getLocation().subscribe((res: any) => {
+    this.locationService.getLocation().subscribe((res: any) => {
       if (res) {
-        this.infoLocation = res.info
         this.location = res.results
-        console.log(this.location)
+
+        for (let index = 0; index < res.info.count; index++) {
+          const element = index;
+          setTimeout(() => {
+            return this.totalLocation = element
+          }, 1000);
+        }
       }
     })
   }
-
 }

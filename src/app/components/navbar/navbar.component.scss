@@ -16,3 +16,34 @@
     padding: 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
+
+.sidebar-sticky {
+    height: 100%;
+  }
+  
+  .navbar-toggler {
+    border: none;
+  }
+  
+  @media (max-width: 992px) {
+    .sidebar-sticky {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #fff;
+      transition: left 0.3s;
+      z-index: 1040;
+    }
+    
+    .sidebar-sticky.show {
+      left: 0;
+    }
+  
+    .navbar-collapse {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  

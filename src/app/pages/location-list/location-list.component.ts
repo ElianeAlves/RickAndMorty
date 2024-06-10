@@ -1,5 +1,6 @@
+import { CharacterService } from './../../services/character.service';
+import { LocationService } from './../../services/location.service';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-location-list',
@@ -8,14 +9,38 @@ import { DataService } from '../../services/data.service';
 })
 export class LocationListComponent implements OnInit {
   location: any;
-  constructor(private dataService: DataService) {
+  info: any;
+  constructor(private locationService: LocationService,
+    private characterService: CharacterService
+  ) {
 
   }
   ngOnInit(): void {
-    this.dataService.getLocation().subscribe((res: any) => {
+    this.locationService.getLocation().subscribe((res: any) => {
       if (res) {
+        this.info = res.info
         this.location = res.results
       }
     })
+  }
+
+  proxima(): void {
+    if (this.info.next) {
+      this.characterService.getNextPage(this.info.next).subscribe((res: any) => {
+        this.info = res.info;
+        this.location = res.results;
+        window.scrollTo(0, 0);
+      });
+    }
+  }
+
+  anterior(): void {
+    if (this.info.prev) {
+      this.characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
+        this.info = res.info;
+        this.location = res.results;
+        window.scrollTo(0, 0);
+      });
+    }
   }
 }

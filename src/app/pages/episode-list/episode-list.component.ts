@@ -1,4 +1,5 @@
-import { DataService } from './../../services/data.service';
+import { CharacterService } from './../../services/character.service';
+import { EpisodeService } from './../../services/episode.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,19 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EpisodeListComponent implements OnInit {
   episodes: any;
+  info: any;
 
 
-  constructor(private dataService: DataService) {
+  constructor(private episodeService: EpisodeService,private characterService: CharacterService) {
 
   }
   ngOnInit(): void {
-    this.dataService.getEpisodes().subscribe((res: any) => {
+    this.episodeService.getEpisodes().subscribe((res: any) => {
       if (res) {
-        console.log(res)
-        this.episodes = res.info
+        this.info = res.info
         this.episodes = res.results
       }
     })
+  }
+
+  proxima(): void {
+    if (this.info.next) {
+      this.characterService.getNextPage(this.info.next).subscribe((res: any) => {
+        this.info = res.info;
+        this.episodes = res.results;
+        window.scrollTo(0, 0);
+      });
+    }
+  }
+
+  anterior(): void {
+    if (this.info.prev) {
+      this.characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
+        this.info = res.info;
+        this.episodes = res.results;
+        window.scrollTo(0, 0);
+      });
+    }
   }
 
 

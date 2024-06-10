@@ -11,9 +11,16 @@
             </ng-container>
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <button type="button" class="btn btn-dark text-cor3 font-class" routerLink="/character-list">Ver
-                mais</button>
-
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" tabindex="-1" (click)="anterior()">Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" (click)="proxima()">Próxima</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

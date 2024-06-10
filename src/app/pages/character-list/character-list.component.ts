@@ -1,3 +1,4 @@
+import { CharacterService } from './../../services/character.service';
 import { Component, OnInit } from '@angular/core';
 import { Results } from '../../models/results';
 import { DataService } from './../../services/data.service';
@@ -15,15 +16,14 @@ export class CharacterListComponent implements OnInit {
     prev: ''
   };
 
-  constructor(private dataService: DataService) { }
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
     this.getResults();
   }
 
   getResults(): void {
-    this.dataService.getCharacters().subscribe((res: any) => {
-      console.log(res);
+    this.characterService.getCharacters().subscribe((res: any) => {
       this.info = res.info;
       this.data = res.results;
     });
@@ -32,10 +32,9 @@ export class CharacterListComponent implements OnInit {
   teste(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
-    console.log('Valor do input:', inputValue);
     // Você pode armazenar o valor em uma propriedade ou fazer outras operações
 
-    this.dataService.getCharactersByName(inputValue).subscribe((res: any) => {
+    this.characterService.getCharactersByName(inputValue).subscribe((res: any) => {
       console.log(res)
       this.data = res.results
     })
@@ -43,8 +42,7 @@ export class CharacterListComponent implements OnInit {
 
   proxima(): void {
     if (this.info.next) {
-      this.dataService.getNextPage(this.info.next).subscribe((res: any) => {
-        console.log(res);
+      this.characterService.getNextPage(this.info.next).subscribe((res: any) => {
         this.info = res.info;
         this.data = res.results;
         window.scrollTo(0, 0);
@@ -54,8 +52,7 @@ export class CharacterListComponent implements OnInit {
 
   anterior(): void {
     if (this.info.prev) {
-      this.dataService.getPreviousPage(this.info.prev).subscribe((res: any) => {
-        console.log(res);
+      this.characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
         this.info = res.info;
         this.data = res.results;
         window.scrollTo(0, 0);
